@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PALs Hackathon - a workshop followed by an 8-hour hackathon by PALs Club of BMSIT."
+    />
+    <title>PALs Hackathon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="scanline"></div>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="PALs Hackathon home">
+        <span class="brand-mark">P</span>
+        <span>PALs_HACK</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#tracks">Tracks</a>
+        <a href="#prizes">Prizes</a>
+        <a href="#faq">FAQ</a>
+        <a href="#venue">Venue</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section" id="home">
+        <div class="rocket" aria-hidden="true">
+          <div class="rocket-body"></div>
+          <div class="rocket-window"></div>
+          <div class="rocket-fin fin-left"></div>
+          <div class="rocket-fin fin-right"></div>
+          <div class="rocket-flame"></div>
+        </div>
+
+        <div class="hero-content">
+          <p class="terminal-kicker">./boot/pals-hackathon</p>
+          <h1>PALs Hackathon</h1>
+          <p class="subtitle">
+            A workshop followed by an 8-hour hackathon by PALs Club of BMSIT
+          </p>
+
+          <div class="countdown" aria-label="Countdown timer">
+            <span class="countdown-label">T-MINUS</span>
+            <span class="countdown-time">00:00:00</span>
+            <span class="cursor" aria-hidden="true"></span>
+          </div>
+
+          <div class="hero-actions" aria-label="Hero actions">
+            <a
+              class="btn btn-primary"
+              href="https://forms.gle/placeholder"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Register
+            </a>
+            <a class="btn" href="#about">Learn More</a>
+            <a class="btn btn-ghost" href="#">Media</a>
+          </div>
+        </div>
+
+        <div class="hero-terminal" aria-hidden="true">
+          <div class="terminal-bar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <pre><code>status: online
+mode: workshop + hack
+tracks: hardware | software
+duration: 8 hours
+flag: build_real_world()</code></pre>
+        </div>
+
+        <div class="pixel-dino" aria-hidden="true">
+          <div class="dino-eye"></div>
+          <div class="dino-mouth"></div>
+          <div class="dino-leg leg-one"></div>
+          <div class="dino-leg leg-two"></div>
+          <div class="dino-tail"></div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-heading">
+          <p class="terminal-kicker">01_about</p>
+          <h2>About</h2>
+        </div>
+        <div class="panel wide-panel">
+          <p>
+            This is a workshop followed by an 8-hour hackathon organized by PALs Club
+            of BMSIT. Participants will learn, build, and compete by solving
+            real-world challenges in hardware and software domains.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="schedule">
+        <div class="section-heading">
+          <p class="terminal-kicker">02_schedule</p>
+          <h2>Schedule</h2>
+        </div>
+        <div class="timeline panel">
+          <div class="timeline-node"></div>
+          <div>
+            <h3>Schedule will be updated soon (XX)</h3>
+            <p>Timeline slots are ready for workshop, build sprint, judging, and demos.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="tracks">
+        <div class="section-heading">
+          <p class="terminal-kicker">03_tracks</p>
+          <h2>Tracks</h2>
+        </div>
+        <div class="track-grid">
+          <article class="panel track-card theme-card">
+            <h3>Hardware</h3>
+            <p>Build with circuits, sensors, devices, and physical computing systems.</p>
+          </article>
+          <article class="panel track-card theme-card">
+            <h3>Software</h3>
+            <p>Build web apps, AI tools, platforms, automation, and digital products.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="prizes">
+        <div class="section-heading">
+          <p class="terminal-kicker">04_prizes</p>
+          <h2>Prizes</h2>
+        </div>
+        <div class="prize-grid">
+          <article class="panel prize-card">
+            <span>01</span>
+            <h3>1st Prize</h3>
+            <p>Amount to be announced</p>
+          </article>
+          <article class="panel prize-card">
+            <span>02</span>
+            <h3>2nd Prize</h3>
+            <p>Amount to be announced</p>
+          </article>
+          <article class="panel prize-card">
+            <span>03</span>
+            <h3>3rd Prize</h3>
+            <p>Amount to be announced</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="section-heading">
+          <p class="terminal-kicker">05_faq</p>
+          <h2>FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <details class="panel" open>
+            <summary>Who can participate?</summary>
+            <p>Students from B.E., M.Tech, MBA, MCA, and related academic programs are welcome to participate.</p>
+          </details>
+          <details class="panel">
+            <summary>Do I need a team?</summary>
+            <p>Teams will be formed randomly before the hackathon to encourage collaboration and interaction among participants.</p>
+          </details>
+          <details class="panel">
+            <summary>Is there a registration fee?</summary>
+            <p>No. Registration for the hackathon is free.</p>
+          </details>
+          <details class="panel">
+            <summary>What should I bring?</summary>
+            <p>Bring your laptop, charger, ID card, and any hardware parts your idea needs.</p>
+          </details>
+          <details class="panel">
+            <summary>Will there be food?</summary>
+            <p>Refreshments will be provided during the workshop.</p>
+          </details>
+          <details class="panel">
+            <summary>Do I need prior experience?</summary>
+            <p>No. The workshop is designed to help participants learn before they build.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="venue">
+        <div class="section-heading">
+          <p class="terminal-kicker">06_venue</p>
+          <h2>Venue</h2>
+        </div>
+        <div class="panel venue-panel">
+          <p>XX (To be updated)</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>PALs Club, BMSIT</p>
+      <div class="social-links" aria-label="Social links">
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
