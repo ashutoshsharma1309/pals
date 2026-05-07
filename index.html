@@ -1,244 +1,394 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="PALs Hackathon - a workshop followed by an 8-hour hackathon by PALs Club of BMSIT."
-    />
-    <title>PALs Hackathon</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="scanline"></div>
-    <header class="site-header">
-      <a class="brand" href="#home" aria-label="PALs Hackathon home">
-        <span class="brand-mark">P</span>
-        <span>PALs_HACK</span>
-      </a>
 
-      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PAL_HACK_2024 // TERMINAL</title>
+<link rel="icon" type="image/png" href="pals-logo.png"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #001a33;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+        .terminal-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 26, 51, 0) 50%,
+                rgba(0, 0, 0, 0.2) 50%
+            );
+            background-size: 100% 4px;
+            z-index: 50;
+            pointer-events: none;
+        }
+        .pixel-border {
+            border: 2px solid #e31e24;
+            position: relative;
+        }
+        .pixel-border-blue {
+            border: 2px solid #3b82f6;
+            position: relative;
+        }
+        .pixel-border::before, .pixel-border::after,
+        .pixel-border-blue::before, .pixel-border-blue::after {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #001a33;
+        }
+        .pixel-border::before, .pixel-border-blue::before { top: -2px; left: -2px; }
+        .pixel-border::after, .pixel-border-blue::after { bottom: -2px; right: -2px; }
 
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#tracks">Tracks</a>
-        <a href="#prizes">Prizes</a>
-        <a href="#faq">FAQ</a>
-        <a href="#venue">Venue</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero section" id="home">
-        <div class="container hero-layout">
-          <div class="hero-content">
-            <p class="terminal-kicker">./boot/pals-hackathon</p>
-            <h1>PALs Hackathon</h1>
-            <p class="subtitle">
-              A workshop followed by an 8-hour hackathon by PALs Club of BMSIT
-            </p>
-
-            <div class="countdown" aria-label="Countdown timer">
-              <span class="countdown-label">T-MINUS</span>
-              <span class="countdown-time">00:00:00</span>
-              <span class="cursor" aria-hidden="true"></span>
-            </div>
-
-            <div class="hero-actions" aria-label="Hero actions">
-              <a
-                class="btn btn-primary"
-                href="https://forms.gle/placeholder"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Register
-              </a>
-              <a class="btn" href="#about">Learn More</a>
-              <a class="btn btn-ghost" href="#">Media</a>
-            </div>
-          </div>
-
-          <div class="hero-visual">
-            <div class="hero-terminal" aria-hidden="true">
-              <div class="terminal-bar">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <pre><code>status: online
-mode: workshop + hack
-tracks: hardware | software
-duration: 8 hours
-flag: build_real_world()</code></pre>
-            </div>
-
-            <div class="visual-container" aria-hidden="true">
-              <div class="pixel-stars">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
-              <div class="launch-grid"></div>
-
-              <div class="rocket">
-                <div class="rocket-body"></div>
-                <div class="rocket-window"></div>
-                <div class="rocket-fin fin-left"></div>
-                <div class="rocket-fin fin-right"></div>
-                <div class="rocket-flame"></div>
-              </div>
-            </div>
-          </div>
+        .glow-blue {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+        .glow-red {
+            box-shadow: 0 0 15px rgba(227, 30, 36, 0.4);
+        }
+        .text-glow-blue {
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+        }
+        .text-glow-red {
+            text-shadow: 0 0 8px rgba(227, 30, 36, 0.6);
+        }
+        .stepped-gradient-blue {
+            background: repeating-linear-gradient(
+                90deg,
+                #002447 0px,
+                #002447 20px,
+                #001a33 20px,
+                #001a33 25px
+            );
+        }
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 15px rgba(227, 30, 36, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(227, 30, 36, 0.7); }
+        }
+        .animate-pulse-red {
+            animation: pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "on-background": "#dfe3e9",
+                "surface-container": "#002447",
+                "surface-container-lowest": "#000d1a",
+                "on-error-container": "#ffdad6",
+                "primary-fixed-dim": "#b1c8e9",
+                "error-container": "#93000a",
+                "secondary": "#94a3b8",
+                "outline-variant": "#1e40af",
+                "inverse-on-surface": "#dfe3e9",
+                "on-primary-container": "#dbeafe",
+                "surface-dim": "#001a33",
+                "secondary-fixed-dim": "#cbd5e1",
+                "surface-container-low": "#001e3d",
+                "surface-container-highest": "#002d5a",
+                "on-secondary-fixed": "#0f172a",
+                "on-surface-variant": "#94a3b8",
+                "primary": "#3b82f6",
+                "accent-red": "#e31e24",
+                "tertiary-fixed": "#e1e1f6",
+                "on-surface": "#dfe3e9",
+                "background": "#001a33",
+                "on-tertiary-fixed": "#191b29",
+                "tertiary": "#60a5fa",
+                "outline": "#3b82f6",
+                "inverse-primary": "#1d4ed8",
+                "on-tertiary-fixed-variant": "#444656",
+                "on-secondary": "#1e293b",
+                "on-secondary-fixed-variant": "#334155",
+                "surface-container-high": "#002447",
+                "on-tertiary-container": "#eff6ff",
+                "surface-variant": "#002d5a",
+                "surface": "#001a33",
+                "tertiary-container": "#1e3a8a",
+                "on-primary-fixed-variant": "#1e40af",
+                "on-primary-fixed": "#1e3a8a",
+                "primary-container": "#1e40af",
+                "on-primary": "#eff6ff",
+                "on-error": "#690005",
+                "on-tertiary": "#1e293b",
+                "secondary-fixed": "#f1f5f9",
+                "tertiary-fixed-dim": "#60a5fa",
+                "inverse-surface": "#dfe3e9",
+                "on-secondary-container": "#94a3b8",
+                "error": "#ffb4ab",
+                "surface-bright": "#002d5a",
+                "primary-fixed": "#dbeafe",
+                "secondary-container": "#002447",
+                "surface-tint": "#3b82f6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0px",
+                      "lg": "0px",
+                      "xl": "0px",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin": "24px",
+                      "xs": "4px",
+                      "md": "16px",
+                      "lg": "32px",
+                      "sm": "8px",
+                      "unit": "4px",
+                      "xl": "64px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Space Grotesk"],
+                      "headline-lg": ["Space Grotesk"],
+                      "body-md": ["Space Grotesk"],
+                      "headline-xl": ["Space Grotesk"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                      "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.05em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background selection:bg-accent-red selection:text-white">
+<div class="scanlines"></div>
+<!-- Top Navigation Bar -->
+<header class="bg-background border-b-2 border-accent-red shadow-[0_4px_20px_rgba(227,30,36,0.15)] flex justify-between items-center w-full h-20 px-margin max-w-full sticky top-0 z-40">
+<nav class="hidden md:flex gap-lg items-center">
+<a class="text-accent-red border-2 border-accent-red/40 px-3 py-1 font-label-sm text-label-sm hover:bg-accent-red hover:text-white transition-all duration-100 active:scale-95 active:opacity-90" href="#">TERMINAL</a>
+<a class="text-on-background opacity-60 font-label-sm text-label-sm hover:text-primary transition-all duration-100 active:scale-95 active:opacity-90" href="#">TRACKS</a>
+<a class="text-on-background opacity-60 font-label-sm text-label-sm hover:text-primary transition-all duration-100 active:scale-95 active:opacity-90" href="#">ALLIES</a>
+<a class="text-on-background opacity-60 font-label-sm text-label-sm hover:text-primary transition-all duration-100 active:scale-95 active:opacity-90" href="#">LOGS</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="terminal-font text-accent-red border-2 border-accent-red/50 px-4 py-2 hover:bg-accent-red/10 transition-all font-bold hidden md:block">
+        [ CONNECT ]
+    </button>
+<img alt="PALS Brand Logo" class="h-10 w-auto" src="pals-logo.png"/>
+<button id="nav-toggle" class="md:hidden flex flex-col justify-center items-center gap-[5px] w-10 h-10 border-2 border-accent-red/50 p-2" aria-label="Toggle menu">
+  <span class="block w-full h-[2px] bg-accent-red transition-all"></span>
+  <span class="block w-full h-[2px] bg-accent-red transition-all"></span>
+  <span class="block w-full h-[2px] bg-accent-red transition-all"></span>
+</button>
+</div>
+</header>
+<!-- Mobile Nav Drawer -->
+<div id="mobile-nav" class="hidden md:hidden fixed top-20 left-0 right-0 bg-background border-b-2 border-accent-red z-40 flex flex-col px-margin py-md gap-md">
+<a class="text-accent-red font-label-sm text-label-sm py-2 border-b border-accent-red/20" href="#">TERMINAL</a>
+<a class="text-on-background opacity-60 font-label-sm text-label-sm py-2 border-b border-accent-red/20" href="#">TRACKS</a>
+<a class="text-on-background opacity-60 font-label-sm text-label-sm py-2 border-b border-accent-red/20" href="#">ALLIES</a>
+<a class="text-on-background opacity-60 font-label-sm text-label-sm py-2 border-b border-accent-red/20" href="#">LOGS</a>
+<button class="terminal-font text-accent-red border-2 border-accent-red/50 px-4 py-2 hover:bg-accent-red/10 transition-all font-bold w-full mt-sm">[ CONNECT ]</button>
+</div>
+<main class="relative">
+<!-- Hero Section -->
+<section class="relative min-h-[600px] md:min-h-[800px] flex flex-col items-center justify-center pt-xl pb-xl px-margin border-b-2 border-accent-red/20">
+<div class="absolute inset-0 opacity-15 pointer-events-none overflow-hidden">
+<div class="grid grid-cols-12 h-full w-full">
+<div class="col-span-1 border-r border-primary/20 h-full"></div>
+<div class="col-span-1 border-r border-primary/20 h-full"></div>
+<div class="col-span-1 border-r border-primary/20 h-full"></div>
+<div class="col-span-1 border-r border-primary/20 h-full"></div>
+<div class="col-span-1 border-r border-primary/20 h-full"></div>
+<div class="col-span-1 border-r border-primary/20 h-full"></div>
+<div class="col-span-1 border-r border-primary/20 h-full"></div>
+<div class="col-span-1 border-r border-primary/20 h-full"></div>
+<div class="col-span-1 border-r border-primary/20 h-full"></div>
+<div class="col-span-1 border-r border-primary/20 h-full"></div>
+<div class="col-span-1 border-r border-primary/20 h-full"></div>
+</div>
+</div>
+<div class="z-10 text-center space-y-lg">
+<div class="inline-block px-4 py-1 bg-surface-container border-l-2 border-accent-red text-primary font-label-sm text-label-sm mb-md glow-blue">
+                    INITIALIZING CONNECTION...
+                </div>
+<h1 class="font-headline-xl text-headline-xl md:text-[80px] text-primary text-glow-blue leading-none tracking-tighter">
+                    PAL_NET<br/>
+<span class="text-on-background">HACKATHON</span>
+</h1>
+<div class="flex flex-col md:flex-row items-center justify-center gap-lg mt-xl">
+<!-- Pixel Timer -->
+<div class="pixel-border-blue p-lg bg-surface-container-low border-primary/40 glow-blue">
+<div class="terminal-font text-headline-lg text-primary flex items-center gap-2 flex-wrap justify-center">
+<span class="inline-block bg-primary-container/40 text-white px-2">14</span><span>:</span><span class="inline-block bg-primary-container/40 text-white px-2">22</span><span>:</span><span class="inline-block bg-primary-container/40 text-white px-2">59</span><span>:</span><span class="inline-block bg-primary-container/40 text-white px-2">08</span>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-primary/60 mt-sm">
+<span>DAYS</span>
+<span>HRS</span>
+<span>MIN</span>
+<span>SEC</span>
+</div>
+</div>
+</div>
+<div class="mt-xl">
+<button class="group relative px-xl py-lg text-headline-lg font-bold text-white bg-accent-red border-4 border-accent-red hover:bg-accent-red/90 hover:scale-105 transition-all active:scale-95 animate-pulse-red">
+<span class="relative z-10">[ EXECUTE CONNECT ]</span>
+<div class="absolute -top-1 -left-1 w-4 h-4 bg-primary"></div>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-primary"></div>
+</button>
+</div>
+</div>
+</section>
+<!-- Terminal Feed Section -->
+<section class="py-xl px-margin bg-surface-container-lowest">
+<div class="max-w-6xl mx-auto">
+<div class="pixel-border border-accent-red/40 overflow-hidden shadow-lg shadow-blue-900/10">
+<div class="bg-surface-container-high px-md py-sm flex justify-between items-center border-b border-accent-red/40">
+<div class="flex items-center gap-sm">
+<span class="w-2 h-2 bg-accent-red animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-accent-red font-bold">SYSTEM_LOGS.EXE</span>
+</div>
+<div class="flex gap-sm">
+<div class="w-3 h-3 border border-primary/50"></div>
+<div class="w-3 h-3 border border-accent-red/50"></div>
+</div>
+</div>
+<div class="p-lg terminal-font text-body-md text-primary/90 h-80 overflow-y-auto space-y-sm bg-black/40">
+<p class="opacity-40">[0.00012] -- BOOTING CORE_V2.0</p>
+<p class="text-secondary">[0.02419] -- ENCRYPTING SIGNAL PIPELINE</p>
+<p>[0.12944] -- NODE CONNECTED: TOKYO_DISTRICT_09</p>
+<p class="text-accent-red font-bold">[0.55210] -- CRITICAL: 2,450 HACKERS DETECTED</p>
+<p>[0.89231] -- TOTAL PRIZE POOL: 50,000 $PAL_COIN</p>
+<p class="text-glow-blue animate-pulse">&gt; WAITING FOR INPUT...</p>
+<p class="text-accent-red">&gt; _</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Tracks Section -->
+<section class="py-xl px-margin">
+<div class="max-w-6xl mx-auto">
+<div class="mb-xl flex items-end gap-md">
+<h2 class="font-headline-xl text-headline-xl text-primary text-glow-blue">SECTOR_TRACKS</h2>
+<div class="flex-grow h-[1px] bg-accent-red/50 mb-4"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Track Card 1 -->
+<div class="pixel-border-blue border-primary/30 p-md flex flex-col gap-md hover:bg-primary/5 transition-colors group hover:border-accent-red">
+<div class="bg-accent-red/10 text-accent-red border-l-2 border-accent-red font-bold p-xs terminal-font text-sm">TRACK_01</div>
+<span class="material-symbols-outlined text-headline-xl text-primary group-hover:text-accent-red transition-colors">security</span>
+<h3 class="font-headline-lg text-headline-lg text-primary">Cyber-Security</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Infiltrate the mainframe. Secure the node. Leave no trace.</p>
+<div class="mt-auto pt-md font-label-sm text-label-sm text-primary/70 group-hover:text-accent-red transition-colors">[ VIEW SPECS ]</div>
+</div>
+<!-- Track Card 2 -->
+<div class="pixel-border-blue border-primary/30 p-md flex flex-col gap-md hover:bg-primary/5 transition-colors group hover:border-accent-red">
+<div class="bg-accent-red/10 text-accent-red border-l-2 border-accent-red font-bold p-xs terminal-font text-sm">TRACK_02</div>
+<span class="material-symbols-outlined text-headline-xl text-primary group-hover:text-accent-red transition-colors">brush</span>
+<h3 class="font-headline-lg text-headline-lg text-primary">Digital Art</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Pixel-perfect aesthetics. Glitch-driven visuals. Reality manipulation.</p>
+<div class="mt-auto pt-md font-label-sm text-label-sm text-primary/70 group-hover:text-accent-red transition-colors">[ VIEW SPECS ]</div>
+</div>
+<!-- Track Card 3 -->
+<div class="pixel-border-blue border-primary/30 p-md flex flex-col gap-md hover:bg-primary/5 transition-colors group hover:border-accent-red">
+<div class="bg-accent-red/10 text-accent-red border-l-2 border-accent-red font-bold p-xs terminal-font text-sm">TRACK_03</div>
+<span class="material-symbols-outlined text-headline-xl text-primary group-hover:text-accent-red transition-colors">biotech</span>
+<h3 class="font-headline-lg text-headline-lg text-primary">Bio-Hacking</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Neural interfaces. Synthetic biology. Transhumanist evolution.</p>
+<div class="mt-auto pt-md font-label-sm text-label-sm text-primary/70 group-hover:text-accent-red transition-colors">[ VIEW SPECS ]</div>
+</div>
+<!-- Track Card 4 -->
+<div class="pixel-border-blue border-primary/30 p-md flex flex-col gap-md hover:bg-primary/5 transition-colors group hover:border-accent-red">
+<div class="bg-accent-red/10 text-accent-red border-l-2 border-accent-red font-bold p-xs terminal-font text-sm">TRACK_04</div>
+<span class="material-symbols-outlined text-headline-xl text-primary group-hover:text-accent-red transition-colors">psychology</span>
+<h3 class="font-headline-lg text-headline-lg text-primary">AI Ethics</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Silicon souls. Moral programming. The future of consciousness.</p>
+<div class="mt-auto pt-md font-label-sm text-label-sm text-primary/70 group-hover:text-accent-red transition-colors">[ VIEW SPECS ]</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Allies Section -->
+<section class="py-xl px-margin bg-surface-container-low border-y border-accent-red/20">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-xl">
+<h2 class="font-headline-xl text-headline-xl text-primary text-glow-blue uppercase">Global_Allies</h2>
+<p class="font-label-sm text-label-sm text-accent-red mt-sm">STRATEGIC PARTNERS &amp; NODES</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="pixel-border-blue border-primary/20 h-32 flex items-center justify-center p-md grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all hover:border-accent-red group">
+<div class="w-full h-full bg-surface-container-highest/50 flex items-center justify-center terminal-font text-primary font-bold group-hover:text-glow-blue">SYNERGY_X</div>
+</div>
+<div class="pixel-border-blue border-primary/20 h-32 flex items-center justify-center p-md grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all hover:border-accent-red group">
+<div class="w-full h-full bg-surface-container-highest/50 flex items-center justify-center terminal-font text-primary font-bold group-hover:text-glow-blue">NEO_TECH</div>
+</div>
+<div class="pixel-border-blue border-primary/20 h-32 flex items-center justify-center p-md grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all hover:border-accent-red group">
+<div class="w-full h-full bg-surface-container-highest/50 flex items-center justify-center terminal-font text-primary font-bold group-hover:text-glow-blue">DATA_VOID</div>
+</div>
+<div class="pixel-border-blue border-primary/20 h-32 flex items-center justify-center p-md grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all hover:border-accent-red group">
+<div class="w-full h-full bg-surface-container-highest/50 flex items-center justify-center terminal-font text-primary font-bold group-hover:text-glow-blue">CORE_NET</div>
+</div>
+<div class="pixel-border-blue border-primary/20 h-32 flex items-center justify-center p-md grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all hover:border-accent-red group">
+<div class="w-full h-full bg-surface-container-highest/50 flex items-center justify-center terminal-font text-primary font-bold group-hover:text-glow-blue">VOID_WARE</div>
+</div>
+<div class="pixel-border-blue border-primary/20 h-32 flex items-center justify-center p-md grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all hover:border-accent-red group">
+<div class="w-full h-full bg-surface-container-highest/50 flex items-center justify-center terminal-font text-primary font-bold group-hover:text-glow-blue">CYBER_DYNE</div>
+</div>
+<div class="pixel-border-blue border-primary/20 h-32 flex items-center justify-center p-md grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all hover:border-accent-red group">
+<div class="w-full h-full bg-surface-container-highest/50 flex items-center justify-center terminal-font text-primary font-bold group-hover:text-glow-blue">M_CHIP</div>
+</div>
+<div class="pixel-border-blue border-primary/20 h-32 flex items-center justify-center p-md grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all hover:border-accent-red group">
+<div class="w-full h-full bg-surface-container-highest/50 flex items-center justify-center terminal-font text-primary font-bold group-hover:text-glow-blue">LOGIC_GATE</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTAs / Registration -->
+<section class="py-xl px-margin relative overflow-hidden">
+<div class="absolute inset-0 stepped-gradient-blue opacity-10"></div>
+<div class="max-w-4xl mx-auto relative z-10 text-center">
+<h2 class="font-headline-xl text-headline-xl text-primary mb-md text-glow-blue">RECRUITMENT_PHASE_01</h2>
+<div class="flex flex-col md:flex-row gap-lg justify-center items-center">
+<div class="pixel-border-blue p-lg bg-surface-container-low max-w-sm w-full text-left border-primary/40">
+<div class="font-headline-lg text-headline-lg text-primary mb-sm">&gt; ENTER_ALIAS</div>
+<div class="h-12 border-b border-accent-red/80 flex items-center terminal-font text-primary">
+<span class="animate-pulse mr-2 bg-accent-red w-2 h-6"></span>
+</div>
+</div>
+<button class="bg-accent-red text-white font-bold px-xl py-lg text-headline-lg shadow-[0_0_30px_rgba(227,30,36,0.3)] hover:bg-accent-red/90 hover:scale-105 active:scale-95 transition-all border-b-4 border-primary">
+                        INITIALIZE_ID
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t-2 border-accent-red flex flex-col md:flex-row justify-between items-center w-full px-margin py-md gap-gutter z-40 relative">
+<div class="font-label-sm text-label-sm text-primary uppercase tracking-widest flex items-center gap-2">
+<span class="w-2 h-2 bg-accent-red rounded-full animate-pulse"></span>
+            SYSTEM STATUS: <span class="text-accent-red font-bold">STABLE</span> // © 2024 PAL_NET
         </div>
-      </section>
-
-      <section class="section" id="about">
-        <div class="container">
-          <div class="section-heading">
-            <p class="terminal-kicker">01_about</p>
-            <h2>About</h2>
-          </div>
-          <div class="panel wide-panel">
-            <p>
-              This is a workshop followed by an 8-hour hackathon organized by PALs Club
-              of BMSIT. Participants will learn, build, and compete by solving
-              real-world challenges in hardware and software domains.
-            </p>
-          </div>
+<div class="flex gap-lg">
+<a class="font-label-sm text-label-sm text-primary/60 hover:text-accent-red transition-colors cursor-pointer hover:translate-y-[-2px]" href="#">GITHUB</a>
+<a class="font-label-sm text-label-sm text-primary/60 hover:text-accent-red transition-colors cursor-pointer hover:translate-y-[-2px]" href="#">DISCORD</a>
+<a class="font-label-sm text-label-sm text-primary/60 hover:text-accent-red transition-colors cursor-pointer hover:translate-y-[-2px]" href="#">DOCS</a>
+</div>
+<div class="terminal-font text-[10px] text-primary/40">
+            CONNECTION_NODE: 0x82f...91a2
         </div>
-      </section>
-
-      <section class="section" id="schedule">
-        <div class="container">
-          <div class="section-heading">
-            <p class="terminal-kicker">02_schedule</p>
-            <h2>Schedule</h2>
-          </div>
-          <div class="timeline panel">
-            <div class="timeline-node"></div>
-            <div>
-              <h3>Schedule will be updated soon (XX)</h3>
-              <p>Timeline slots are ready for workshop, build sprint, judging, and demos.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="tracks">
-        <div class="container">
-          <div class="section-heading">
-            <p class="terminal-kicker">03_tracks</p>
-            <h2>Tracks</h2>
-          </div>
-          <div class="track-grid">
-            <article class="panel track-card theme-card">
-              <h3>Hardware</h3>
-              <p>Build with circuits, sensors, devices, and physical computing systems.</p>
-            </article>
-            <article class="panel track-card theme-card">
-              <h3>Software</h3>
-              <p>Build web apps, AI tools, platforms, automation, and digital products.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="prizes">
-        <div class="container">
-          <div class="section-heading">
-            <p class="terminal-kicker">04_prizes</p>
-            <h2>Prizes</h2>
-          </div>
-          <div class="prize-grid">
-            <article class="panel prize-card">
-              <span>01</span>
-              <h3>1st Prize</h3>
-              <p>Amount to be announced</p>
-            </article>
-            <article class="panel prize-card">
-              <span>02</span>
-              <h3>2nd Prize</h3>
-              <p>Amount to be announced</p>
-            </article>
-            <article class="panel prize-card">
-              <span>03</span>
-              <h3>3rd Prize</h3>
-              <p>Amount to be announced</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="faq">
-        <div class="container">
-          <div class="section-heading">
-            <p class="terminal-kicker">05_faq</p>
-            <h2>FAQ</h2>
-          </div>
-          <div class="faq-list">
-            <details class="panel" open>
-              <summary>Who can participate?</summary>
-              <p>Students from B.E., M.Tech, MBA, MCA, and related academic programs are welcome to participate.</p>
-            </details>
-            <details class="panel">
-              <summary>Do I need a team?</summary>
-              <p>Teams will be formed randomly before the hackathon to encourage collaboration and interaction among participants.</p>
-            </details>
-            <details class="panel">
-              <summary>Is there a registration fee?</summary>
-              <p>No. Registration for the hackathon is free.</p>
-            </details>
-            <details class="panel">
-              <summary>What should I bring?</summary>
-              <p>Bring your laptop, charger, ID card, and any hardware parts your idea needs.</p>
-            </details>
-            <details class="panel">
-              <summary>Will there be food?</summary>
-              <p>Refreshments will be provided during the workshop.</p>
-            </details>
-            <details class="panel">
-              <summary>Do I need prior experience?</summary>
-              <p>No. The workshop is designed to help participants learn before they build.</p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="venue">
-        <div class="container">
-          <div class="section-heading">
-            <p class="terminal-kicker">06_venue</p>
-            <h2>Venue</h2>
-          </div>
-          <div class="panel venue-panel">
-            <p>XX (To be updated)</p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>PALs Club, BMSIT</p>
-      <div class="social-links" aria-label="Social links">
-        <a href="#">Instagram</a>
-        <a href="#">LinkedIn</a>
-      </div>
-    </footer>
-
-    <script src="script.js"></script>
-  </body>
-</html>
+</footer>
+<script>
+const navToggle = document.getElementById('nav-toggle');
+const mobileNav = document.getElementById('mobile-nav');
+navToggle.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.add('hidden')));
+</script>
+</body></html>
