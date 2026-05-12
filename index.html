@@ -1,241 +1,816 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050505" />
     <meta
       name="description"
-      content="PALs Hackathon - a workshop followed by an 8-hour hackathon by PALs Club of BMSIT."
+      content="PALs Hack 2026 — Workshop + 8-Hour National Hackathon organized by PALs Club, BMSIT. Learn. Build. Compete."
     />
-    <title>PALs Hackathon</title>
+    <title>PALs Hack 2026 — Learn. Build. Compete.</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;900&family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="scanline"></div>
-    <header class="site-header">
-      <a class="brand" href="#home" aria-label="PALs Hackathon home">
-        <span class="brand-mark">P</span>
-        <span>PALs_HACK</span>
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Custom cursor light -->
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Page-wide grid + particles canvas -->
+    <canvas class="bg-canvas" id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-vignette" aria-hidden="true"></div>
+    <div class="bg-aurora" aria-hidden="true">
+      <span class="aurora-blue"></span>
+      <span class="aurora-red"></span>
+      <span class="aurora-cyan"></span>
+    </div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="loader-mark">
+        <img src="pals-logo.png" alt="" class="loader-logo" />
+      </div>
+      <div class="loader-bar"><span></span></div>
+      <div class="loader-text">INITIALIZING&nbsp;//&nbsp;PALS_HACK_2026</div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="nav" id="nav">
+      <a class="nav-brand" href="#home" aria-label="PALs Hack home">
+        <span class="nav-brand-glyph">
+          <img src="pals-logo.png" alt="PALs" class="nav-brand-img" />
+        </span>
+        <span class="nav-brand-text">
+          <span>PALs</span>
+          <em>HACK&nbsp;2026</em>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about"><span>01</span>About</a>
+        <a href="#schedule"><span>02</span>Schedule</a>
+        <a href="#tracks"><span>03</span>Tracks</a>
+        <a href="#prizes"><span>04</span>Prizes</a>
+        <a href="#faq"><span>05</span>FAQ</a>
+        <a href="#venue"><span>06</span>Venue</a>
+      </nav>
+
+      <a class="nav-cta magnetic" href="#register" data-magnetic>
+        <span>Register</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+          <path
+            d="M5 12h14M13 5l7 7-7 7"
+            stroke="currentColor"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
       </a>
 
       <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span>
       </button>
-
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#tracks">Tracks</a>
-        <a href="#prizes">Prizes</a>
-        <a href="#faq">FAQ</a>
-        <a href="#venue">Venue</a>
-      </nav>
     </header>
 
-    <main>
-      <section class="hero section" id="home">
-        <div class="container hero-layout">
-          <div class="hero-content">
-            <p class="terminal-kicker">./boot/pals-hackathon</p>
-            <h1>PALs Hackathon</h1>
-            <p class="subtitle">
-              A workshop followed by an 8-hour hackathon by PALs Club of BMSIT
-            </p>
+    <main id="home">
+      <!-- ========================= HERO ========================= -->
+      <section class="hero">
+        <div class="hero-streaks" aria-hidden="true">
+          <span class="streak streak-red"></span>
+          <span class="streak streak-blue"></span>
+          <span class="streak streak-cyan"></span>
+        </div>
 
-            <div class="countdown" aria-label="Countdown timer">
-              <span class="countdown-label">T-MINUS</span>
-              <span class="countdown-time">00:00:00</span>
-              <span class="cursor" aria-hidden="true"></span>
-            </div>
-
-            <div class="hero-actions" aria-label="Hero actions">
-              <a
-                class="btn btn-primary"
-                href="https://forms.gle/placeholder"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Register
-              </a>
-              <a class="btn" href="#about">Learn More</a>
-              <a class="btn btn-ghost" href="#">Media</a>
-            </div>
+        <div class="hero-inner">
+          <div class="hero-meta reveal" data-reveal>
+            <span class="dot"></span>
+            <span class="hero-meta-text">PALS_CLUB&nbsp;//&nbsp;BMSIT&nbsp;//&nbsp;2026</span>
+            <span class="hero-meta-divider"></span>
+            <span class="hero-meta-tag">v1.0</span>
           </div>
 
-          <div class="hero-visual">
-            <div class="hero-terminal" aria-hidden="true">
-              <div class="terminal-bar">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <pre><code>status: online
-mode: workshop + hack
-tracks: hardware | software
-duration: 8 hours
-flag: build_real_world()</code></pre>
+          <div class="hero-presents reveal" data-reveal data-stagger="0">
+            <span class="hero-presents-label">An initiative by</span>
+            <a class="hero-presents-mark" href="#home" aria-label="PALs Club">
+              <img src="pals-logo.png" alt="PALs Club" />
+            </a>
+            <span class="hero-presents-x">×</span>
+            <a class="hero-presents-mark hero-presents-mark--bmsit" href="#venue" aria-label="BMSIT">
+              <img src="bmsit.png" alt="BMSIT" />
+            </a>
+            <span class="hero-presents-host">Hosted at <em>BMSIT</em></span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="title-line reveal" data-reveal data-stagger="0">
+              <span class="title-word">PALs</span>
+            </span>
+            <span class="title-line reveal" data-reveal data-stagger="1">
+              <span class="title-word title-word--accent">Hack</span>
+              <span class="title-word">2026</span>
+            </span>
+          </h1>
+
+          <p class="hero-subtitle reveal" data-reveal data-stagger="2">
+            Workshop&nbsp;<span class="plus">+</span>&nbsp;8-Hour National Hackathon
+          </p>
+
+          <p class="hero-tagline reveal" data-reveal data-stagger="3">
+            <span>Learn.</span>
+            <span class="dot-sep"></span>
+            <span>Build.</span>
+            <span class="dot-sep"></span>
+            <span>Compete.</span>
+          </p>
+
+          <div class="hero-actions reveal" data-reveal data-stagger="4">
+            <a class="btn btn-primary magnetic" href="#register" data-magnetic>
+              <span class="btn-label">Register Now</span>
+              <span class="btn-arrow">
+                <svg viewBox="0 0 24 24" width="16" height="16">
+                  <path
+                    d="M5 12h14M13 5l7 7-7 7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="btn-glow"></span>
+            </a>
+            <a class="btn btn-ghost magnetic" href="#tracks" data-magnetic>
+              <span class="btn-label">Explore Tracks</span>
+            </a>
+          </div>
+
+          <div class="hero-stats reveal" data-reveal data-stagger="5">
+            <div class="stat">
+              <div class="stat-num" data-counter="8">0</div>
+              <div class="stat-lbl">Hours of Build</div>
             </div>
-
-            <div class="visual-container" aria-hidden="true">
-              <div class="pixel-stars">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
-              <div class="launch-grid"></div>
-
-              <div class="rocket">
-                <div class="rocket-body"></div>
-                <div class="rocket-window"></div>
-                <div class="rocket-fin fin-left"></div>
-                <div class="rocket-fin fin-right"></div>
-                <div class="rocket-flame"></div>
-              </div>
+            <div class="stat">
+              <div class="stat-num" data-counter="2">0</div>
+              <div class="stat-lbl">Premier Tracks</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num" data-counter="100" data-suffix="+">0</div>
+              <div class="stat-lbl">Hackers Expected</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num" data-counter="1">0</div>
+              <div class="stat-lbl">Unforgettable Night</div>
             </div>
           </div>
         </div>
+
+        <div class="hero-scroll" aria-hidden="true">
+          <span class="hero-scroll-line"></span>
+          <span class="hero-scroll-text">SCROLL</span>
+        </div>
+
+        <!-- Hero brand watermark -->
+        <div class="hero-logomark reveal" data-reveal data-stagger="6" aria-hidden="true">
+          <img src="pals-logo.png" alt="" />
+          <span class="hero-logomark-ring"></span>
+          <span class="hero-logomark-ring hero-logomark-ring--lg"></span>
+        </div>
       </section>
 
+      <!-- ========================= ABOUT ========================= -->
       <section class="section" id="about">
-        <div class="container">
-          <div class="section-heading">
-            <p class="terminal-kicker">01_about</p>
-            <h2>About</h2>
+        <div class="section-head">
+          <div class="section-kicker reveal" data-reveal>
+            <span class="kicker-num">01</span>
+            <span class="kicker-line"></span>
+            <span class="kicker-text">About the Event</span>
           </div>
-          <div class="panel wide-panel">
-            <p>
-              This is a workshop followed by an 8-hour hackathon organized by PALs Club
-              of BMSIT. Participants will learn, build, and compete by solving
-              real-world challenges in hardware and software domains.
-            </p>
-          </div>
+          <h2 class="section-title reveal" data-reveal data-stagger="1">
+            Where <span class="grad-blue">hardware</span> meets
+            <span class="grad-red">software</span>.
+          </h2>
         </div>
-      </section>
 
-      <section class="section" id="schedule">
-        <div class="container">
-          <div class="section-heading">
-            <p class="terminal-kicker">02_schedule</p>
-            <h2>Schedule</h2>
+        <div class="about-grid">
+          <div class="about-copy reveal" data-reveal data-stagger="2">
+            <p class="about-lead">
+              A workshop followed by an 8-hour hackathon, organized by
+              <strong>PALs Club, BMSIT</strong>. Participants learn first, then
+              build, then ship — solving real-world challenges across hardware
+              and software domains.
+            </p>
+            <p class="about-body">
+              Whether you sketch circuits or compile servers, the room is wired
+              for builders. Come for the workshop, stay for the sprint, leave
+              with something you actually shipped.
+            </p>
+
+            <ul class="about-pills">
+              <li><span class="pill-dot"></span>Beginners welcome</li>
+              <li><span class="pill-dot"></span>Hardware & Software</li>
+              <li><span class="pill-dot"></span>National participation</li>
+              <li><span class="pill-dot"></span>Mentor-backed</li>
+            </ul>
           </div>
-          <div class="timeline panel">
-            <div class="timeline-node"></div>
-            <div>
-              <h3>Schedule will be updated soon (XX)</h3>
-              <p>Timeline slots are ready for workshop, build sprint, judging, and demos.</p>
+
+          <div class="about-card glass reveal" data-reveal data-stagger="3" data-tilt>
+            <div class="glass-border"></div>
+            <div class="about-card-head">
+              <span class="status-dot"></span>
+              <span class="about-card-title">EVENT&nbsp;OVERVIEW</span>
+              <span class="about-card-id">PH-2026</span>
+            </div>
+            <div class="about-card-rows">
+              <div class="row"><span>Host</span><em>PALs Club, BMSIT</em></div>
+              <div class="row"><span>Format</span><em>Workshop + Hackathon</em></div>
+              <div class="row"><span>Duration</span><em>8 Hours</em></div>
+              <div class="row"><span>Tracks</span><em>Hardware · Software</em></div>
+              <div class="row"><span>Eligibility</span><em>BMSIT&nbsp;·&nbsp;All branches</em></div>
+              <div class="row"><span>Fee</span><em>Free Registration</em></div>
+            </div>
+            <div class="about-card-foot">
+              <span class="ascii-bar"></span>
+              <span class="about-card-state">READY</span>
             </div>
           </div>
         </div>
+
+        <!-- Timeline strip -->
+        <div class="about-strip reveal" data-reveal data-stagger="4">
+          <div class="about-strip-track">
+            <span>LEARN</span><span class="sep">/</span>
+            <span>BUILD</span><span class="sep">/</span>
+            <span>COMPETE</span><span class="sep">/</span>
+            <span>SHIP</span><span class="sep">/</span>
+            <span>WIN</span><span class="sep">/</span>
+            <span>REPEAT</span><span class="sep">/</span>
+            <span>LEARN</span><span class="sep">/</span>
+            <span>BUILD</span><span class="sep">/</span>
+            <span>COMPETE</span><span class="sep">/</span>
+            <span>SHIP</span><span class="sep">/</span>
+            <span>WIN</span><span class="sep">/</span>
+            <span>REPEAT</span><span class="sep">/</span>
+          </div>
+        </div>
       </section>
 
+      <!-- ========================= SCHEDULE ========================= -->
+      <section class="section" id="schedule">
+        <div class="section-head">
+          <div class="section-kicker reveal" data-reveal>
+            <span class="kicker-num">02</span>
+            <span class="kicker-line"></span>
+            <span class="kicker-text">Event Timeline</span>
+          </div>
+          <h2 class="section-title reveal" data-reveal data-stagger="1">
+            The <span class="grad-cyan">schedule</span>, ticking soon.
+          </h2>
+          <p class="section-sub reveal" data-reveal data-stagger="2">
+            Final times drop closer to the date. Here's the running order.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-line" aria-hidden="true">
+            <span class="timeline-line-fill"></span>
+          </div>
+
+          <div class="timeline-item reveal" data-reveal>
+            <div class="timeline-bullet"><span></span></div>
+            <div class="timeline-card glass" data-tilt>
+              <div class="glass-border"></div>
+              <div class="tl-head">
+                <span class="tl-tag">PHASE 01</span>
+                <span class="tl-time">XX : XX</span>
+              </div>
+              <h3>Workshop</h3>
+              <p>Foundational sessions across hardware tooling and modern software stacks — taught by mentors who ship for a living.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal" data-reveal data-stagger="1">
+            <div class="timeline-bullet"><span></span></div>
+            <div class="timeline-card glass" data-tilt>
+              <div class="glass-border"></div>
+              <div class="tl-head">
+                <span class="tl-tag">PHASE 02</span>
+                <span class="tl-time">XX : XX</span>
+              </div>
+              <h3>Build Sprint</h3>
+              <p>The 8-hour hack window. Teams form, problems chosen, and the keyboards never quite cool down.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal" data-reveal data-stagger="2">
+            <div class="timeline-bullet"><span></span></div>
+            <div class="timeline-card glass" data-tilt>
+              <div class="glass-border"></div>
+              <div class="tl-head">
+                <span class="tl-tag">PHASE 03</span>
+                <span class="tl-time">XX : XX</span>
+              </div>
+              <h3>Mentoring</h3>
+              <p>Floating experts circulate — debugging boards, sharpening pitches, breaking ties between architectures.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal" data-reveal data-stagger="3">
+            <div class="timeline-bullet"><span></span></div>
+            <div class="timeline-card glass" data-tilt>
+              <div class="glass-border"></div>
+              <div class="tl-head">
+                <span class="tl-tag">PHASE 04</span>
+                <span class="tl-time">XX : XX</span>
+              </div>
+              <h3>Judging</h3>
+              <p>A panel of industry judges scores on innovation, execution, and how loud the demo can run without crashing.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="schedule-note reveal" data-reveal>
+          <span class="note-dot"></span>
+          Schedule will be updated soon. Stay tuned via PALs Club channels.
+        </p>
+      </section>
+
+      <!-- ========================= TRACKS ========================= -->
       <section class="section" id="tracks">
-        <div class="container">
-          <div class="section-heading">
-            <p class="terminal-kicker">03_tracks</p>
-            <h2>Tracks</h2>
+        <div class="section-head">
+          <div class="section-kicker reveal" data-reveal>
+            <span class="kicker-num">03</span>
+            <span class="kicker-line"></span>
+            <span class="kicker-text">Hackathon Tracks</span>
           </div>
-          <div class="track-grid">
-            <article class="panel track-card theme-card">
-              <h3>Hardware</h3>
-              <p>Build with circuits, sensors, devices, and physical computing systems.</p>
-            </article>
-            <article class="panel track-card theme-card">
-              <h3>Software</h3>
-              <p>Build web apps, AI tools, platforms, automation, and digital products.</p>
-            </article>
-          </div>
+          <h2 class="section-title reveal" data-reveal data-stagger="1">
+            Two tracks. <span class="grad-red">One arena.</span>
+          </h2>
+          <p class="section-sub reveal" data-reveal data-stagger="2">
+            Pick your weapon. Build with what you know — or learn what you don't.
+          </p>
+        </div>
+
+        <div class="tracks-grid">
+          <article class="track-card glass reveal" data-reveal data-tilt>
+            <div class="glass-border"></div>
+            <div class="track-card-glow track-glow--blue"></div>
+
+            <header class="track-head">
+              <div class="track-icon track-icon--blue" aria-hidden="true">
+                <svg viewBox="0 0 32 32" width="28" height="28">
+                  <rect x="7" y="7" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                  <rect x="12" y="12" width="8" height="8" rx="1" fill="currentColor" opacity=".25"/>
+                  <path d="M3 11h4M3 16h4M3 21h4M25 11h4M25 16h4M25 21h4M11 3v4M16 3v4M21 3v4M11 25v4M16 25v4M21 25v4" stroke="currentColor" stroke-width="1.4"/>
+                </svg>
+              </div>
+              <span class="track-tag">TRACK&nbsp;01</span>
+            </header>
+
+            <h3 class="track-title">Hardware</h3>
+            <p class="track-desc">Circuits, sensors, microcontrollers, and the physical layer that makes software touch the real world.</p>
+
+            <ul class="track-list">
+              <li><span class="bullet"></span>IoT</li>
+              <li><span class="bullet"></span>Robotics</li>
+              <li><span class="bullet"></span>Embedded Systems</li>
+              <li><span class="bullet"></span>Automation</li>
+            </ul>
+
+            <footer class="track-foot">
+              <span class="track-state">// READY_TO_DEPLOY</span>
+              <a class="track-link" href="#register">
+                Pick this track
+                <svg viewBox="0 0 24 24" width="14" height="14"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </footer>
+          </article>
+
+          <article class="track-card glass reveal" data-reveal data-stagger="1" data-tilt>
+            <div class="glass-border"></div>
+            <div class="track-card-glow track-glow--red"></div>
+
+            <header class="track-head">
+              <div class="track-icon track-icon--red" aria-hidden="true">
+                <svg viewBox="0 0 32 32" width="28" height="28">
+                  <path d="M11 8l-7 8 7 8M21 8l7 8-7 8M19 4l-6 24" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="track-tag">TRACK&nbsp;02</span>
+            </header>
+
+            <h3 class="track-title">Software</h3>
+            <p class="track-desc">Models, apps, platforms, defenses. Whatever can be shipped to a browser, an edge, or a server farm.</p>
+
+            <ul class="track-list">
+              <li><span class="bullet"></span>AI / ML</li>
+              <li><span class="bullet"></span>Web Development</li>
+              <li><span class="bullet"></span>Cybersecurity</li>
+              <li><span class="bullet"></span>Open Innovation</li>
+            </ul>
+
+            <footer class="track-foot">
+              <span class="track-state">// READY_TO_DEPLOY</span>
+              <a class="track-link" href="#register">
+                Pick this track
+                <svg viewBox="0 0 24 24" width="14" height="14"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </footer>
+          </article>
         </div>
       </section>
 
+      <!-- ========================= PRIZES ========================= -->
       <section class="section" id="prizes">
-        <div class="container">
-          <div class="section-heading">
-            <p class="terminal-kicker">04_prizes</p>
-            <h2>Prizes</h2>
+        <div class="section-head">
+          <div class="section-kicker reveal" data-reveal>
+            <span class="kicker-num">04</span>
+            <span class="kicker-line"></span>
+            <span class="kicker-text">Prize Pool</span>
           </div>
-          <div class="prize-grid">
-            <article class="panel prize-card">
-              <span>01</span>
-              <h3>1st Prize</h3>
-              <p>Amount to be announced</p>
-            </article>
-            <article class="panel prize-card">
-              <span>02</span>
-              <h3>2nd Prize</h3>
-              <p>Amount to be announced</p>
-            </article>
-            <article class="panel prize-card">
-              <span>03</span>
-              <h3>3rd Prize</h3>
-              <p>Amount to be announced</p>
-            </article>
-          </div>
+          <h2 class="section-title reveal" data-reveal data-stagger="1">
+            <span class="grad-blue">Worth building</span> for.
+          </h2>
+          <p class="section-sub reveal" data-reveal data-stagger="2">
+            Cash, kits, and crowns. Exact amounts drop closer to launch.
+          </p>
+        </div>
+
+        <div class="prizes-grid prizes-grid--three">
+          <article class="prize-card prize--gold glass reveal" data-reveal data-tilt>
+            <div class="glass-border"></div>
+            <div class="prize-shine"></div>
+            <div class="prize-rank">01</div>
+            <div class="prize-medal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.8 6.5 19.5l1-6.3L3 8.9 9 8z" fill="currentColor"/></svg>
+            </div>
+            <h3>1st Prize</h3>
+            <p class="prize-amount">Coming Soon</p>
+            <p class="prize-note">+ trophy &amp; recognition</p>
+          </article>
+
+          <article class="prize-card prize--silver glass reveal" data-reveal data-stagger="1" data-tilt>
+            <div class="glass-border"></div>
+            <div class="prize-shine"></div>
+            <div class="prize-rank">02</div>
+            <div class="prize-medal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="13" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 5l3-3 3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>2nd Prize</h3>
+            <p class="prize-amount">Coming Soon</p>
+            <p class="prize-note">+ certificates &amp; goodies</p>
+          </article>
+
+          <article class="prize-card prize--bronze glass reveal" data-reveal data-stagger="2" data-tilt>
+            <div class="glass-border"></div>
+            <div class="prize-shine"></div>
+            <div class="prize-rank">03</div>
+            <div class="prize-medal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><rect x="5" y="5" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 12h6M12 9v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>3rd Prize</h3>
+            <p class="prize-amount">Coming Soon</p>
+            <p class="prize-note">+ certificates</p>
+          </article>
         </div>
       </section>
 
+      <!-- ========================= FAQ ========================= -->
       <section class="section" id="faq">
-        <div class="container">
-          <div class="section-heading">
-            <p class="terminal-kicker">05_faq</p>
-            <h2>FAQ</h2>
+        <div class="section-head">
+          <div class="section-kicker reveal" data-reveal>
+            <span class="kicker-num">05</span>
+            <span class="kicker-line"></span>
+            <span class="kicker-text">Frequently Asked</span>
           </div>
-          <div class="faq-list">
-            <details class="panel" open>
-              <summary>Who can participate?</summary>
-              <p>Students from B.E., M.Tech, MBA, MCA, and related academic programs are welcome to participate.</p>
-            </details>
-            <details class="panel">
-              <summary>Do I need a team?</summary>
-              <p>Teams will be formed randomly before the hackathon to encourage collaboration and interaction among participants.</p>
-            </details>
-            <details class="panel">
-              <summary>Is there a registration fee?</summary>
-              <p>No. Registration for the hackathon is free.</p>
-            </details>
-            <details class="panel">
-              <summary>What should I bring?</summary>
-              <p>Bring your laptop, charger, ID card, and any hardware parts your idea needs.</p>
-            </details>
-            <details class="panel">
-              <summary>Will there be food?</summary>
-              <p>Refreshments will be provided during the workshop.</p>
-            </details>
-            <details class="panel">
-              <summary>Do I need prior experience?</summary>
-              <p>No. The workshop is designed to help participants learn before they build.</p>
-            </details>
+          <h2 class="section-title reveal" data-reveal data-stagger="1">
+            Quick answers. <span class="grad-red">Faster builds.</span>
+          </h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item glass reveal" data-reveal>
+            <div class="glass-border"></div>
+            <summary>
+              <span class="faq-q-num">01</span>
+              <span class="faq-q-text">Who can participate?</span>
+              <span class="faq-q-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              All BE, ME, MTech, and MCA students from every branch of BMSIT
+              are eligible to participate. Bring curiosity — the rest is
+              provided.
+            </div>
+          </details>
+
+          <details class="faq-item glass reveal" data-reveal data-stagger="1">
+            <div class="glass-border"></div>
+            <summary>
+              <span class="faq-q-num">02</span>
+              <span class="faq-q-text">Is prior experience required?</span>
+              <span class="faq-q-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              No. The workshop preceding the hackathon is built precisely so
+              first-timers can sprint alongside seasoned hackers.
+            </div>
+          </details>
+
+          <details class="faq-item glass reveal" data-reveal data-stagger="2">
+            <div class="glass-border"></div>
+            <summary>
+              <span class="faq-q-num">03</span>
+              <span class="faq-q-text">Will certificates be provided?</span>
+              <span class="faq-q-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              Yes. Every participant receives an official certificate from
+              PALs Club, BMSIT — winners get something a little shinier.
+            </div>
+          </details>
+
+          <details class="faq-item glass reveal" data-reveal data-stagger="3">
+            <div class="glass-border"></div>
+            <summary>
+              <span class="faq-q-num">04</span>
+              <span class="faq-q-text">Is this a team event?</span>
+              <span class="faq-q-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              Yes. Teams are formed on-site to encourage cross-branch
+              collaboration and to prevent anyone from coding alone at 3 AM.
+            </div>
+          </details>
+
+          <details class="faq-item glass reveal" data-reveal data-stagger="4">
+            <div class="glass-border"></div>
+            <summary>
+              <span class="faq-q-num">05</span>
+              <span class="faq-q-text">Will food be provided?</span>
+              <span class="faq-q-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              Refreshments and meals are provided during workshop and build
+              hours. Caffeine, importantly, is non-negotiable.
+            </div>
+          </details>
+
+          <details class="faq-item glass reveal" data-reveal data-stagger="5">
+            <div class="glass-border"></div>
+            <summary>
+              <span class="faq-q-num">06</span>
+              <span class="faq-q-text">What should participants bring?</span>
+              <span class="faq-q-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              Laptop, charger, college ID, any hardware components your idea
+              needs, and a willingness to ship something real.
+            </div>
+          </details>
+
+          <details class="faq-item glass reveal" data-reveal data-stagger="6">
+            <div class="glass-border"></div>
+            <summary>
+              <span class="faq-q-num">07</span>
+              <span class="faq-q-text">Is there a registration fee?</span>
+              <span class="faq-q-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              No. Participation is completely free for all eligible BMSIT
+              students.
+            </div>
+          </details>
+
+          <details class="faq-item glass reveal" data-reveal data-stagger="7">
+            <div class="glass-border"></div>
+            <summary>
+              <span class="faq-q-num">08</span>
+              <span class="faq-q-text">Can I bring my own idea, or are problem statements provided?</span>
+              <span class="faq-q-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              Both. We share a set of curated problem statements across hardware
+              and software tracks, but original ideas aligned with the tracks
+              are equally welcome.
+            </div>
+          </details>
+
+          <details class="faq-item glass reveal" data-reveal data-stagger="8">
+            <div class="glass-border"></div>
+            <summary>
+              <span class="faq-q-num">09</span>
+              <span class="faq-q-text">Will mentors be available during the hackathon?</span>
+              <span class="faq-q-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              Yes. Faculty and industry mentors circulate throughout the build
+              sprint to unstick teams on hardware, software, and pitch
+              direction.
+            </div>
+          </details>
+
+          <details class="faq-item glass reveal" data-reveal data-stagger="9">
+            <div class="glass-border"></div>
+            <summary>
+              <span class="faq-q-num">10</span>
+              <span class="faq-q-text">How will projects be judged?</span>
+              <span class="faq-q-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              Projects are judged on innovation, technical execution,
+              real-world impact, and the quality of the final demo presented
+              to the panel.
+            </div>
+          </details>
+
+          <details class="faq-item glass reveal" data-reveal data-stagger="10">
+            <div class="glass-border"></div>
+            <summary>
+              <span class="faq-q-num">11</span>
+              <span class="faq-q-text">How big can a team be?</span>
+              <span class="faq-q-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              Team sizes will be announced along with the final schedule.
+              Cross-branch and cross-year teams are encouraged.
+            </div>
+          </details>
+
+          <details class="faq-item glass reveal" data-reveal data-stagger="11">
+            <div class="glass-border"></div>
+            <summary>
+              <span class="faq-q-num">12</span>
+              <span class="faq-q-text">Will Wi-Fi and power be available at the venue?</span>
+              <span class="faq-q-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              Yes — campus Wi-Fi and dedicated power points will be available
+              throughout the workshop and the 8-hour build sprint.
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ========================= VENUE ========================= -->
+      <section class="section" id="venue">
+        <div class="section-head">
+          <div class="section-kicker reveal" data-reveal>
+            <span class="kicker-num">06</span>
+            <span class="kicker-line"></span>
+            <span class="kicker-text">Where it happens</span>
+          </div>
+          <h2 class="section-title reveal" data-reveal data-stagger="1">
+            <span class="grad-cyan">Venue</span> — on campus.
+          </h2>
+        </div>
+
+        <div class="venue-grid">
+          <div class="venue-map glass reveal" data-reveal data-tilt>
+            <div class="glass-border"></div>
+            <div class="venue-map-grid" aria-hidden="true"></div>
+            <div class="venue-map-rings" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="venue-seal" aria-hidden="true">
+              <img src="bmsit.png" alt="" />
+            </div>
+            <span class="venue-map-tag">// BMSIT CAMPUS</span>
+            <span class="venue-map-label">BENGALURU — 560119</span>
+          </div>
+
+          <div class="venue-info reveal" data-reveal data-stagger="1">
+            <p class="venue-eyebrow"><span class="dot"></span>Host campus</p>
+            <h3 class="venue-name">
+              BMS Institute of <br />Technology &amp; Management
+            </h3>
+            <p class="venue-addr">
+              Doddaballapura Main Road, Yelahanka, Avalahalli,<br />
+              Bengaluru, Karnataka 560119
+            </p>
+
+            <ul class="venue-meta">
+              <li><span>City</span><em>Bengaluru, KA</em></li>
+              <li><span>Pin</span><em>560119</em></li>
+              <li><span>Doors open</span><em>To be updated</em></li>
+            </ul>
+
+            <p class="venue-note">
+              <span class="note-dot"></span>
+              Exact block &amp; entry details will be updated soon.
+            </p>
+
+            <a class="btn btn-ghost magnetic" href="#register" data-magnetic>
+              <span class="btn-label">Save your seat</span>
+            </a>
           </div>
         </div>
       </section>
 
-      <section class="section" id="venue">
-        <div class="container">
-          <div class="section-heading">
-            <p class="terminal-kicker">06_venue</p>
-            <h2>Venue</h2>
-          </div>
-          <div class="panel venue-panel">
-            <p>XX (To be updated)</p>
+      <!-- ========================= CTA ========================= -->
+      <section class="section cta-section" id="register">
+        <div class="cta-card glass reveal" data-reveal data-tilt>
+          <div class="glass-border"></div>
+          <div class="cta-bg" aria-hidden="true"></div>
+
+          <p class="cta-eyebrow"><span class="dot"></span>Registrations open soon</p>
+          <h2 class="cta-title">
+            Ready to <span class="grad-red">hack</span> with the best?
+          </h2>
+          <p class="cta-sub">
+            Limited seats. National participation. Bring a laptop and a problem
+            worth solving — we'll handle the rest.
+          </p>
+
+          <div class="cta-actions">
+            <a class="btn btn-primary magnetic" href="#" data-magnetic>
+              <span class="btn-label">Register Now</span>
+              <span class="btn-arrow">
+                <svg viewBox="0 0 24 24" width="16" height="16">
+                  <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="btn-glow"></span>
+            </a>
+            <a class="btn btn-ghost magnetic" href="mailto:palsclub@bmsit.in" data-magnetic>
+              <span class="btn-label">Contact organizers</span>
+            </a>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <p>PALs Club, BMSIT</p>
-      <div class="social-links" aria-label="Social links">
-        <a href="#">Instagram</a>
-        <a href="#">LinkedIn</a>
+    <!-- ========================= FOOTER ========================= -->
+    <footer class="footer">
+      <div class="footer-line" aria-hidden="true"></div>
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-marks">
+            <div class="footer-mark">
+              <img src="pals-logo.png" alt="PALs Club" />
+            </div>
+            <span class="footer-brand-x">×</span>
+            <div class="footer-mark footer-mark--bmsit">
+              <img src="bmsit.png" alt="BMSIT" />
+            </div>
+          </div>
+          <div>
+            <p class="footer-title">PALs Club <span class="footer-title-sep">·</span> BMSIT</p>
+            <p class="footer-sub">Organized by PALs Club, hosted at BMS Institute of Technology &amp; Management</p>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Event</p>
+          <a href="#about">About</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#tracks">Tracks</a>
+          <a href="#prizes">Prizes</a>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Info</p>
+          <a href="#faq">FAQ</a>
+          <a href="#venue">Venue</a>
+          <a href="#register">Register</a>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Connect</p>
+          <a href="#" aria-label="Instagram" class="footer-social">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/>
+            </svg>
+            Instagram
+          </a>
+          <a href="#" aria-label="LinkedIn" class="footer-social">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 PALs Club, BMSIT. All rights reserved.</p>
+        <p class="footer-monogram">PH&nbsp;//&nbsp;2026</p>
       </div>
     </footer>
 
